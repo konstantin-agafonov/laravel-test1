@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreGuestRequest;
-use App\Http\Requests\UpdateGuestRequest;
 use App\Models\Guest;
+use Illuminate\Http\Request;
 
 class GuestController extends Controller
 {
@@ -19,9 +18,21 @@ class GuestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreGuestRequest $request)
+    public function store(Request $request)
     {
-        //
+        $fields = $request->validate([
+            'name'      => ['required', 'max:50', 'min:2'],
+            'surname'   => ['required', 'max:50', 'min:2'],
+            'phone'     => ['required', 'max:20', 'min:3'],
+            'email'     => ['email'],
+            'country'   => ['max:2', 'min:2'],
+        ]);
+
+        $guest = Guest::create($fields);
+
+        return [
+            'guest' => $guest,
+        ];
     }
 
     /**
@@ -35,7 +46,7 @@ class GuestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateGuestRequest $request, Guest $guest)
+    public function update(Request $request, Guest $guest)
     {
         //
     }

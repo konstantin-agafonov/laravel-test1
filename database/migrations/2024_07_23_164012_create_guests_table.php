@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name', length: 50);
             $table->string('surname', length: 50);
-            $table->string('phone', length: 20)->unique();
-            $table->string('email', length: 50)->unique()->nullable();
-            $table->string('country', length: 2);
+            $table->string('phone', length: 20)
+                ->unique();
+            $table->string('email', length: 50)
+                ->unique()
+                ->nullable();
+            $table->string('country', length: 2)
+                ->default('RU');
             $table->timestamps();
         });
     }
