@@ -40,7 +40,9 @@ class GuestController extends Controller
      */
     public function show(Guest $guest)
     {
-        //
+        return [
+            'guest' => $guest,
+        ];
     }
 
     /**
@@ -48,7 +50,19 @@ class GuestController extends Controller
      */
     public function update(Request $request, Guest $guest)
     {
-        //
+        $fields = $request->validate([
+            'name'      => ['required', 'max:50', 'min:2'],
+            'surname'   => ['required', 'max:50', 'min:2'],
+            'phone'     => ['required', 'max:20', 'min:3'],
+            'email'     => ['email'],
+            'country'   => ['max:2', 'min:2'],
+        ]);
+
+        $guest->update($fields);
+
+        return [
+            'guest' => $guest,
+        ];
     }
 
     /**
@@ -56,6 +70,10 @@ class GuestController extends Controller
      */
     public function destroy(Guest $guest)
     {
-        //
+        $guest->delete();
+
+        return [
+            'message' => 'Guest deleted successfully',
+        ];
     }
 }
