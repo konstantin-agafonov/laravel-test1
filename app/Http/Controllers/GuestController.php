@@ -23,8 +23,8 @@ class GuestController extends Controller
         $fields = $request->validate([
             'name'      => ['required', 'max:50', 'min:2'],
             'surname'   => ['required', 'max:50', 'min:2'],
-            'phone'     => ['required', 'max:20', 'min:3'],
-            'email'     => ['email'],
+            'phone'     => ['required', 'max:20', 'min:3','unique:guests'],
+            'email'     => ['email','unique:guests'],
             'country'   => ['max:2', 'min:2'],
         ]);
 
