@@ -24,15 +24,15 @@ sudo systemctl stop apache
 sudo systemctl stop mariadb
 ```
 
-4. В папке проекта создать файл .env и скопировать в него всё содержимое файла .env.example
+3. В папке проекта создать файл .env и скопировать в него всё содержимое файла .env.example
 
 
-5. Запустить Sail
+4. Запустить Sail
 ```console
 ./vendor/bin/sail up
 ```
 
-6. Запустить миграцию
+5. Запустить миграцию
 ```console
 ./vendor/bin/sail artisan migrate
 ```
@@ -42,8 +42,11 @@ sudo systemctl stop mariadb
 ## Описание API
 
 Приложение доступно по url http://localhost:8123/
+
 Ко всем запросам необходимо добавлять заголовок Accept: application/json
+
 {guest} - параметр с ID гостя
+
 
 GET|HEAD        http://localhost:8123/api/guests .....................Получение списка гостей
 
